@@ -56,4 +56,6 @@ class Enigma
     @encrypted_hash[:date]       = date
     @encrypted_hash
   end
+
+  
 end
