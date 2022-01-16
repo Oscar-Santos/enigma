@@ -1,10 +1,14 @@
 class Enigma
   attr_reader :alphabet_hash,
-              :alphabet_array
+              :alphabet_array,
+              :encrypted_hash
 
   def initialize
     @alphabet_hash  = Alphabet.new.index
     @alphabet_array = Alphabet.new.alphabet_array
+    @encrypted_hash = {encryption: nil,
+                       key: nil,
+                       date: nil}
   end
 
   def generate_keys
@@ -41,22 +45,15 @@ class Enigma
     end
   end
 
-  def encrypt(message, key = generate_key , date = generate_date)
-    shift = shift(key, date)
-    message_array = message.chars
-    collector = []
-    message_array.each_with_index do |letter, index|
-      if index % 4 == 0
-
-        collector << @alphabet_array.rotate(shift[0])[letter.to_i]
-
-      elsif index % 4 == 1
-        collector << @alphabet_array.rotate(shift[1])[index]
-      elsif index % 4 == 2
-        collector << @alphabet_array.rotate(shift[2])[index]
-      elsif index % 4 == 3
-        collector << @alphabet_array.rotate(shift[3])[index]
-      end
+  def encrypt(message, key = generate_key, date = generate_date)
+    shift = shift(key, format_date(date))
+    message_array = number_generator(message.gsub(/\n/, ""))
+    encrypted_message = message_array.map.with_index do |letter, index| #this below if statement could be refactored into a helper m
+      @alphabet_array.rotate(shift[index % 4])[letter]
     end
+    @encrypted_hash[:encryption] = encrypted_message.join
+    @encrypted_hash[:key]        = key
+    @encrypted_hash[:date]       = date
+    @encrypted_hash
   end
 end
