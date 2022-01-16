@@ -41,8 +41,29 @@
           null,
           null
         ]
+      },
+      "/Users/oscarsantos/enigma/spec/enigma_spec.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/Users/oscarsantos/enigma/lib/enigma.rb": {
+        "lines": [
+          1,
+          null
+        ]
       }
     },
-    "timestamp": 1642305433
+    "timestamp": 1642305958
   }
 }
