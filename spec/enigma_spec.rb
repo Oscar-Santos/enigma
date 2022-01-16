@@ -46,7 +46,7 @@ RSpec.describe "enigma" do
     expect(enigma.format_date("040895")).to be_a String
   end
 
-  xit "can encrypt" do
+  it "can encrypt" do
     enigma = Enigma.new
     expect(enigma.encrypt("hello world", "02715", "040895")).to eq( {
                                                                       encryption: "keder ohulw",
