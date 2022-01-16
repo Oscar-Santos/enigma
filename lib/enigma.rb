@@ -1,3 +1,6 @@
+require "./lib/alphabet"
+require "date"
+
 class Enigma
   attr_reader :alphabet_hash,
               :alphabet_array,
@@ -19,15 +22,17 @@ class Enigma
     rand(99999).to_s.rjust(5, '0')
   end
 
+  def format_date(new_date)
+    squared_date = new_date.to_i ** 2
+    squared_date.to_s.slice(-4..-1)
+  end
+
   def generate_date
     date = Date.today
     date_to_string = date.strftime('%d%m%y')
   end
 
-  def format_date(new_date)
-    squared_date = new_date.to_i ** 2
-    squared_date.to_s.slice(-4..-1)
-  end
+
 
   def shift(key, date, encrypt = true)
     a_offset = key.slice(0..1).to_i + date.slice(0).to_i
