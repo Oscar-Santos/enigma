@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2022-01-15T21:19:25-07:00">2022-01-15T21:19:25-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2022-01-15T21:27:03-07:00">2022-01-15T21:27:03-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -734,7 +734,7 @@
 
             
 
-            <code class="ruby">    date.strftime(&#39;%d-%m-%Y&#39;)</code>
+            <code class="ruby">    date_to_string = date.strftime(&#39;%d%m%y&#39;)</code>
           </li>
         </div>
       
@@ -1018,7 +1018,7 @@
 
             
 
-            <code class="ruby">    expect(enigma.generate_keys.length).to eq 5</code>
+            <code class="ruby">    expect(enigma.generate_keys.length).to eq(5)</code>
           </li>
         </div>
       
@@ -1084,7 +1084,7 @@
 
             
 
-            <code class="ruby">    expect(enigma.generate_date.length).to be 10</code>
+            <code class="ruby">    expect(enigma.generate_date.length).to eq(6)</code>
           </li>
         </div>
       

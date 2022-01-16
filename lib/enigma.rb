@@ -11,6 +11,6 @@ class Enigma
 
   def generate_date
     date = Date.today
-    date.strftime('%d-%m-%Y')
+    date_to_string = date.strftime('%d%m%y')
   end
 end
