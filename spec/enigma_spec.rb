@@ -9,10 +9,12 @@ RSpec.describe "enigma" do
     expect(enigma).to be_a(Enigma)
   end
 
-  it "has an alphabet" do
+  it "has an alphabet in a hash and an array" do
     enigma = Enigma.new
-    expect(enigma.alphabet).to be_a Hash
-    expect(enigma.alphabet.count).to eq 27
+    expect(enigma.alphabet_hash).to be_a Hash
+    expect(enigma.alphabet_hash.count).to eq 27
+    expect(enigma.alphabet_array).to be_a Array
+    expect(enigma.alphabet_array.count).to eq 27
   end
 
   it "can generate keys" do
