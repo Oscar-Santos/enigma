@@ -1,7 +1,8 @@
 class Enigma
   attr_reader :alphabet_hash,
               :alphabet_array,
-              :encrypted_hash
+              :encrypted_hash,
+              :decrypted_hash
 
   def initialize
     @alphabet_hash  = Alphabet.new.index
@@ -9,9 +10,12 @@ class Enigma
     @encrypted_hash = {encryption: nil,
                        key: nil,
                        date: nil}
+    @decrypted_hash = {decryption: nil,
+                      key: nil,
+                      date: nil}
   end
 
-  def generate_keys
+  def generate_key
     rand(99999).to_s.rjust(5, '0')
   end
 
@@ -55,5 +59,18 @@ class Enigma
     @encrypted_hash[:key]        = key
     @encrypted_hash[:date]       = date
     @encrypted_hash
+  end
+
+  def decrypt(message, key, date = generate_date)
+    shift = shift(key, format_date(date), false)
+    message_array = number_generator(message.gsub(/\n/, ""))
+    collector = []
+    message_array.each_with_index do |letter, index|
+      collector << @alphabet_array.rotate(shift[index % 4])[letter]
+    end
+    @decrypted_hash[:decryption] = collector.join
+    @decrypted_hash[:key]        = key
+    @decrypted_hash[:date]       = date
+    @decrypted_hash
   end
 end
