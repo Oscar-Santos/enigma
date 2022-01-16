@@ -32,7 +32,13 @@ RSpec.describe "enigma" do
     expect(enigma.shift("02715", "1025")).to eq([3, 27, 73, 20])
   end
 
-  it "can encrypt" do
+  it "can turn the message into an array of numbers" do
+    enigma = Enigma.new
+    expect(enigma.number_generator("hello world")).to be_a Array
+    expect(enigma.number_generator("hello world")).to eq([])
+  end
+
+  xit "can encrypt" do
     enigma = Enigma.new
     expect(enigma.encrypt("hello world", "02715", "040895")).to eq( {
                                                                       encryption: "keder ohulw",
