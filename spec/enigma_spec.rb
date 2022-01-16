@@ -19,8 +19,8 @@ RSpec.describe "enigma" do
 
   it "can generate keys" do
     enigma = Enigma.new
-    expect(enigma.generate_keys).to be_a String
-    expect(enigma.generate_keys.length).to eq(5)
+    expect(enigma.generate_key).to be_a String
+    expect(enigma.generate_key.length).to eq(5)
   end
 
   it "can generate the date" do
@@ -75,5 +75,12 @@ RSpec.describe "enigma" do
     expect(enigma.decrypt(encrypted[:encryption], "02715")).to eq({:date=>"160122",
                                                                     :decryption=>"hello world",
                                                                     :key=>"02715"})
+  end
+
+  it "can encrypt a message by generating a random key and todays date" do
+    enigma = Enigma.new
+    encrypted = enigma.encrypt("hello world")
+    expect(encrypted).to be_a Hash
+    expect(encrypted.keys.size).to eq 3
   end
 end
