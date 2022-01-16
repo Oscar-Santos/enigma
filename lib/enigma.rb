@@ -1,5 +1,6 @@
 class Enigma
-  attr_reader :alphabet
+  attr_reader :alphabet_hash,
+              :alphabet_array
 
   def initialize
     @alphabet = Alphabet.new.index
@@ -23,13 +24,20 @@ class Enigma
     [a_offset, b_offset, c_offset, d_offset]
   end
 
+  def number_generator(message)
+    message_array = message.chars
+    message_array.map do |letter|
+      @alphabet_hash[letter]
+    end
+  end
+
   def encrypt(message, key = generate_key , date = generate_date)
     shift = shift(key, date)
     message_array = message.chars
     collector = []
     message_array.each_with_index do |letter, index|
       if index % 4 == 0
-        
+
         collector << @alphabet_array.rotate(shift[0])[letter.to_i]
 
       elsif index % 4 == 1
@@ -40,6 +48,5 @@ class Enigma
         collector << @alphabet_array.rotate(shift[3])[index]
       end
     end
-
   end
 end
