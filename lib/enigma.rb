@@ -1,3 +1,6 @@
+require "./lib/alphabet"
+require "date"
+
 class Enigma
   attr_reader :alphabet_hash,
               :alphabet_array,
