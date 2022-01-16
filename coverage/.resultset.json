@@ -1,0 +1,48 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/oscarsantos/enigma/lib/alphabet.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          null,
+          1,
+          2,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          2,
+          null,
+          null
+        ]
+      }
+    },
+    "timestamp": 1642305433
+  }
+}
