@@ -1,5 +1,6 @@
 require_relative 'spec_helper'
 require "./lib/enigma"
+require "./lib/helper_encrypt"
 require "./lib/alphabet"
 
 RSpec.describe "enigma" do
@@ -87,5 +88,14 @@ RSpec.describe "enigma" do
     encrypted = enigma.encrypt("hello world")
     expect(encrypted).to be_a Hash
     expect(encrypted.keys.size).to eq 3
+  end
+
+  it 'can downcase capital letters' do
+    enigma = Enigma.new
+    expect(enigma.encrypt("HELLO world", "02715", "040895")).to eq( {
+                                                                      encryption: "keder ohulw",
+                                                                      key: "02715",
+                                                                      date: "040895"
+                                                                      })
   end
 end
