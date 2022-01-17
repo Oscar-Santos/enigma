@@ -22,12 +22,17 @@ class Enigma
   end
 
   def encrypt(message, key = generate_key, date = generate_date)
-    shift = shift(key, format_date(date))
+    shift = shift(key, offset(date))
     downcase_message = message.downcase
     message_array = number_generator(downcase_message.gsub(/\n/, ""))
     encrypted_message = message_array.map.with_index do |letter, index|
-      @alphabet_array.rotate(shift[index % 4])[letter]
+      if @alphabet_array.rotate(shift[index % 4])[letter].nil?
+        letter.chr
+      else
+        @alphabet_array.rotate(shift[index % 4])[letter]
+      end
     end
+
     @encrypted_hash[:encryption] = encrypted_message.join
     @encrypted_hash[:key]        = key
     @encrypted_hash[:date]       = date
@@ -35,12 +40,17 @@ class Enigma
   end
 
   def decrypt(message, key, date = generate_date)
-    shift = shift(key, format_date(date), false)
+    shift = shift(key, offset(date), false)
     message_array = number_generator(message.gsub(/\n/, ""))
     collector = []
     message_array.each_with_index do |letter, index|
-      collector << @alphabet_array.rotate(shift[index % 4])[letter]
+      if @alphabet_array.rotate(shift[index % 4])[letter].nil?
+        collector << letter.chr
+      else
+        collector << @alphabet_array.rotate(shift[index % 4])[letter]
+      end
     end
+
     @decrypted_hash[:decryption] = collector.join
     @decrypted_hash[:key]        = key
     @decrypted_hash[:date]       = date

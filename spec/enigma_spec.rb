@@ -23,10 +23,16 @@ RSpec.describe "enigma" do
     expect(enigma.generate_key.length).to eq(5)
   end
 
-  it "can generate the date" do
+  it "can generate a date" do
     enigma = Enigma.new
     expect(enigma.generate_date).to be_a(String)
     expect(enigma.generate_date.length).to eq(6)
+  end
+
+  it "it can square the date and take the last 4 digits" do
+    enigma = Enigma.new
+    expect(enigma.offset("040895")).to be_a(String)
+    expect(enigma.offset("040895")).to eq("1025")
   end
 
   it "can shift for encryption" do
@@ -45,11 +51,6 @@ RSpec.describe "enigma" do
     expect(enigma.number_generator("hello world")).to eq([7, 4, 11, 11, 14, 26, 22, 14, 17, 11, 3])
   end
 
-  it "it can square the date and take the last 4 digits" do
-    enigma = Enigma.new
-    expect(enigma.format_date("040895")).to eq("1025")
-    expect(enigma.format_date("040895")).to be_a(String)
-  end
 
   it "can encrypt" do
     enigma = Enigma.new

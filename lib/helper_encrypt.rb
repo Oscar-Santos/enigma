@@ -5,14 +5,14 @@ module HelperEncrypt
     rand(99999).to_s.rjust(5, "0")
   end
 
-  def format_date(new_date)
-    squared_date = (new_date.to_i ** 2)
-    squared_date.to_s.slice(-4..-1)
-  end
-
   def generate_date
     date = Date.today
     date_to_string = date.strftime('%d%m%y')
+  end
+
+  def offset(new_date)
+    squared_date = (new_date.to_i ** 2)
+    squared_date.to_s[-4..-1]
   end
 
   def shift(key, date, encrypt = true)
@@ -31,7 +31,11 @@ module HelperEncrypt
   def number_generator(message)
     message_array = message.chars
     message_array.map do |letter|
-      @alphabet_hash[letter]
+      if @alphabet_hash[letter]
+        @alphabet_hash[letter]
+      else
+        letter.ord 
+      end
     end
   end
 end
