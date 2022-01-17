@@ -2,11 +2,11 @@ require "date"
 
 module HelperEncrypt
   def generate_key
-    rand(99999).to_s.rjust(5, '0')
+    rand(99999).to_s.rjust(5, "0")
   end
 
   def format_date(new_date)
-    squared_date = new_date.to_i ** 2
+    squared_date = (new_date.to_i ** 2)
     squared_date.to_s.slice(-4..-1)
   end
 

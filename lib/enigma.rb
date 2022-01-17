@@ -4,13 +4,13 @@ require "./lib/helper_encrypt"
 
 class Enigma
   include HelperEncrypt
+
   attr_reader :alphabet_hash,
               :alphabet_array,
               :encrypted_hash,
               :decrypted_hash
 
   def initialize
-
     @alphabet_hash  = Alphabet.new.index
     @alphabet_array = Alphabet.new.alphabet_array
     @encrypted_hash = {encryption: nil,
@@ -25,8 +25,6 @@ class Enigma
     shift = shift(key, format_date(date))
     downcase_message = message.downcase
     message_array = number_generator(downcase_message.gsub(/\n/, ""))
-
-
     encrypted_message = message_array.map.with_index do |letter, index|
       @alphabet_array.rotate(shift[index % 4])[letter]
     end
