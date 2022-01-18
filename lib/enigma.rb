@@ -50,7 +50,6 @@ class Enigma
         collector << @alphabet_array.rotate(shift[index % 4])[letter]
       end
     end
-
     @decrypted_hash[:decryption] = collector.join
     @decrypted_hash[:key]        = key
     @decrypted_hash[:date]       = date

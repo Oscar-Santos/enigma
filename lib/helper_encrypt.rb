@@ -34,7 +34,7 @@ module HelperEncrypt
       if @alphabet_hash[letter]
         @alphabet_hash[letter]
       else
-        letter.ord 
+        letter.ord
       end
     end
   end
