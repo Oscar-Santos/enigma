@@ -9,6 +9,7 @@ key        = ARGV[2]
 date       = ARGV[3]
 
 encrypted_file = File.new(encryption).read
+
 File.open(decryption, "w") do |file|
   enigma.decrypt(encrypted_file, key, date)
   file.puts enigma.decrypted_hash[:decryption]
